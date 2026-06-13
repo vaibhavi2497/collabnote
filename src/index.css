@@ -1,0 +1,284 @@
+/* =========================
+   THEME VARIABLES
+========================= */
+
+:root {
+  --bg: #f8fafc;
+  --surface: #ffffff;
+  --surface-2: #f1f5f9;
+  --text: #0f172a;
+  --border: #e2e8f0;
+}
+
+body.dark {
+  --bg: #0f172a;
+  --surface: #1e293b;
+  --surface-2: #334155;
+  --text: #f8fafc;
+  --border: #475569;
+}
+
+/* =========================
+   GLOBAL
+========================= */
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+  transition: all 0.3s ease;
+  font-family: system-ui, sans-serif;
+}
+
+#root {
+  min-height: 100vh;
+  background: inherit;
+}
+
+body.dark {
+  background: #0f172a;
+  color: #f8fafc;
+}
+
+body:not(.dark) {
+  background: #f8fafc;
+  color: #0f172a;
+}
+
+/* =========================
+   MAIN LAYOUT
+========================= */
+
+.main-layout {
+  margin-left: 70px;
+  min-height: 100vh;
+  background: var(--bg);
+  transition: all 0.3s ease;
+}
+
+.main-layout.sidebar-open {
+  margin-left: 240px;
+}
+
+/* =========================
+   SIDEBAR
+========================= */
+
+.sidebar {
+  top: 70px; /* navbar height */
+  height: calc(100vh - 70px);
+  z-index: 1000;
+  transition: all 0.3s ease;
+}
+
+body.dark .sidebar {
+  background: #111827;
+}
+
+body:not(.dark) .sidebar {
+  background: #ffffff;
+  border-right: 1px solid #e2e8f0;
+}
+
+.sidebar.open {
+  width: 240px;
+}
+
+/* =========================
+   NOTES GRID
+========================= */
+
+.notes-container {
+  display: grid;
+  grid-template-columns: repeat(
+    auto-fill,
+    minmax(320px, 1fr)
+  );
+  gap: 20px;
+}
+
+/* =========================
+   NOTE CARD
+========================= */
+
+.note-card {
+  border-radius: 16px;
+  padding: 16px;
+  overflow: hidden;
+  transition: all 0.3s ease;
+}
+
+body.dark .note-card {
+  background: var(--surface);
+  color: white !important;
+  border: 1px solid var(--border);
+}
+
+body:not(.dark) .note-card {
+  background: white;
+  color: #0f172a !important;
+  border: 1px solid #e2e8f0;
+}
+
+.note-card h5,
+.note-card h6,
+.note-card p,
+.note-card span {
+  color: inherit !important;
+}
+
+/* =========================
+   ACTION BUTTONS
+========================= */
+
+.note-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 15px;
+}
+
+.note-actions button {
+  visibility: visible !important;
+  opacity: 1 !important;
+}
+
+/* =========================
+   SECTION TITLES
+========================= */
+
+.section-title {
+  color: inherit;
+  margin-bottom: 20px;
+}
+
+/* =========================
+   BOOTSTRAP CARDS
+========================= */
+
+body.dark .card {
+  background: #1e293b !important;
+  color: white !important;
+  border: 1px solid #334155 !important;
+}
+
+/* =========================
+   INPUTS
+========================= */
+
+body.dark input,
+body.dark textarea,
+body.dark select {
+  background: #334155 !important;
+  color: white !important;
+  border: 1px solid #475569 !important;
+}
+
+body.dark input::placeholder,
+body.dark textarea::placeholder {
+  color: #cbd5e1 !important;
+}
+
+/* =========================
+   BUTTONS
+========================= */
+
+body.dark .btn-outline-primary {
+  color: #93c5fd;
+  border-color: #93c5fd;
+}
+
+body.dark .btn-outline-danger {
+  color: #fca5a5;
+  border-color: #fca5a5;
+}
+
+body.dark .btn-outline-secondary {
+  color: #cbd5e1;
+  border-color: #475569;
+}
+
+/* =========================
+   QUILL EDITOR
+========================= */
+
+body.dark .ql-toolbar {
+  background: #334155;
+  border-color: #475569;
+}
+
+body.dark .ql-container {
+  background: #334155;
+  border-color: #475569;
+}
+
+body.dark .ql-editor {
+  color: white;
+}
+
+body.dark .ql-editor.ql-blank::before {
+  color: #cbd5e1;
+}
+
+/* =========================
+   CONTAINER
+========================= */
+
+.container {
+  position: relative;
+  z-index: 1;
+}
+
+/* =========================
+   MOBILE
+========================= */
+
+@media (max-width: 768px) {
+
+  .sidebar {
+    width: 75px;
+    transform: translateX(0);
+    transition: width 0.3s ease,
+                transform 0.3s ease;
+    overflow: hidden;
+  }
+
+  .sidebar.open {
+    width: 240px;
+    transform: translateX(0);
+  }
+
+}
+
+  .notes-container {
+    grid-template-columns: 1fr;
+  }
+
+
+
+/* =========================
+   PROFILE PAGE
+========================= */
+
+
+body.dark .card {
+  background: #1e293b !important;
+  color: #f8fafc !important;
+  border: 1px solid #334155 !important;
+}
+
+body.dark .stat-card {
+  background: #334155 !important;
+  color: #f8fafc !important;
+}
+
+body.dark .profile-page {
+  background: #0f172a !important;
+  color: #f8fafc !important;
+}
+
+
