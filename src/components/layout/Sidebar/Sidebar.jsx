@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { useTheme } from "../../../context/ThemeContext";
+// import { useTheme } from "../../../context/ThemeContext";
 
 export default function Sidebar({
   user,
@@ -9,7 +9,7 @@ export default function Sidebar({
   setIsOpen,
   isMobile,
 }) {
-  const { darkMode } = useTheme();
+  // const { darkMode } = useTheme();
 
   return (
     <>

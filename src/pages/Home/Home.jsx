@@ -52,7 +52,7 @@ export default function Home() {
     restoreArchive,
     shareNote,
     setEditingUser,
-    updateNoteOrder,
+
   } = useNotes(user?.email);
 
   // =========================
@@ -81,10 +81,9 @@ export default function Home() {
   const [activeSection, setActiveSection] =
     useState("notes");
 
-  const [isOpen] = useState(false);
+  // const [isOpen] = useState(false);
 
-  const [isMobile, setIsMobile] =
-    useState(window.innerWidth <= 768);
+  // const [isMobile, setIsMobile] =   useState(window.innerWidth <= 768);
 
   const [orderedNotes, setOrderedNotes] = useState([]);
 
@@ -112,31 +111,31 @@ const [historyNoteId, setHistoryNoteId] = useState(null);
   // console.log("SAVED NOTES:", savedNotes);
   // // =========================
 
-  useEffect(() => {
+  // useEffect(() => {
 
-    const handleResize = () => {
+  //   const handleResize = () => {
 
-      setIsMobile(
-        window.innerWidth <= 768
-      );
+  //     setIsMobile(
+  //       window.innerWidth <= 768
+  //     );
 
-    };
+  //   };
 
-    window.addEventListener(
-      "resize",
-      handleResize
-    );
+  //   window.addEventListener(
+  //     "resize",
+  //     handleResize
+  //   );
 
-    return () => {
+  //   return () => {
 
-      window.removeEventListener(
-        "resize",
-        handleResize
-      );
+  //     window.removeEventListener(
+  //       "resize",
+  //       handleResize
+  //     );
 
-    };
+  //   };
 
-  }, []);
+  // }, []);
 
 
   // ==========================
