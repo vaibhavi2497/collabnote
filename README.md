@@ -4,7 +4,9 @@ A modern real-time collaborative note-taking application built with React.js and
 
 ## 🚀 Live Demo
 
-Coming Soon
+## 🚀 Live Demo
+
+https://collabnote-otoo.vercel.app
 
 ## ✨ Features
 
