@@ -26,11 +26,7 @@ export default function Dashboard() {
   // firebase states
   const [notes, setNotes] = useState([]);
 
-  const [trashNotes, setTrashNotes] =
-    useState([]);
-
-  const [archiveNotes, setArchiveNotes] =
-    useState([]);
+ 
 
   // DARK MODE
   const { darkMode } = useTheme();
@@ -58,31 +54,7 @@ export default function Dashboard() {
 
     );
 
-    // trash query
-    const trashQuery = query(
-
-      collection(db, "trashNotes"),
-
-      where(
-        "userId",
-        "==",
-        uid
-      )
-
-    );
-
-    // archive query
-    const archiveQuery = query(
-
-      collection(db, "archiveNotes"),
-
-      where(
-        "userId",
-        "==",
-        uid
-      )
-
-    );
+   
 
     // realtime notes
     const unsubscribeNotes =
@@ -99,56 +71,49 @@ export default function Dashboard() {
 
       });
 
-    // realtime trash
-    const unsubscribeTrash =
-      onSnapshot(trashQuery, (snapshot) => {
-
-        const trashData =
-          snapshot.docs.map((doc) => ({
-            id: doc.id,
-            ...doc.data(),
-          }));
-
-        setTrashNotes(trashData);
-        
-
-
-      });
-
-    // realtime archive
-    const unsubscribeArchive =
-      onSnapshot(archiveQuery, (snapshot) => {
-
-        const archiveData =
-          snapshot.docs.map((doc) => ({
-            id: doc.id,
-            ...doc.data(),
-          }));
-
-        setArchiveNotes(archiveData);
-        
-      });
+       
 
     return () => {
 
       unsubscribeNotes();
-      unsubscribeTrash();
-      unsubscribeArchive();
+    
 
     };
 
   }, [user]);
 
   // dashboard counts
-  const totalNotes = notes.length;
 
-  const favoriteNotes = notes.filter(
-    (note) => note.favorite
-  ).length;
+// Active notes only
+const totalNotes = notes.filter(
+  (note) => !note.deleted && !note.archived
+).length;
 
-  const pinnedNotes = notes.filter(
-    (note) => note.pinned
-  ).length;
+// Favorites from active notes
+const favoriteNotes = notes.filter(
+  (note) =>
+    note.favorite &&
+    !note.deleted &&
+    !note.archived
+).length;
+
+// Pinned from active notes
+const pinnedNotes = notes.filter(
+  (note) =>
+    note.pinned &&
+    !note.deleted &&
+    !note.archived
+).length;
+
+// Trash count
+const trashCount = notes.filter(
+  (note) => note.deleted === true
+).length;
+
+// Archive count
+const archiveCount = notes.filter(
+  (note) => note.archived === true
+).length;
 
   const recentNotes = [...notes]
     .sort((a, b) => {
@@ -333,16 +298,16 @@ export default function Dashboard() {
           },
 
           {
-            title: "Trash",
-            value: trashNotes.length,
-            icon: "🗑",
-          },
+  title: "Trash",
+  value: trashCount,
+  icon: "🗑",
+},
 
-          {
-            title: "Archived",
-            value: archiveNotes.length,
-            icon: "📥",
-          },
+{
+  title: "Archived",
+  value: archiveCount,
+  icon: "📥",
+},
 
         ].map((item, index) => (
 
